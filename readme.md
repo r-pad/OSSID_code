@@ -28,8 +28,8 @@ git clone git@github.com:r-pad/quat_math.git
 cd quat_math; pip install .; cd ..
 git clone git@github.com:r-pad/object_pose_utils.git
 cd object_pose_utils; pip install .; cd ..
-git clone git@github.com:thodan/bop_toolkit.git
-cd bop_toolkit; pip install -r requirements.txt -e .; cd ..
+git clone git@github.com:r-pad/bop_toolkit.git   # We have only tested with our own fork of bop_toolkit
+cd bop_toolkit; pip install -e .; cd ..
 ```
 
 4. Set up Zephyr by following the instructions [here](https://github.com/r-pad/zephyr). Note that we will use the same conda environment, so please skip the first step in "Set up environment" and follow the step 2, 3 and 4 in the conda environment `ossid`. 
@@ -49,7 +49,7 @@ cd .. # move to the root folder of zephyr
 pip install -e .
 ```
 
-5. (For BOP Challenge evaluation) Setup the renderer needed for BOP evaluation as instructed [here](https://github.com/thodan/bop_toolkit). Update [config.py](https://github.com/thodan/bop_toolkit/blob/master/bop_toolkit_lib/config.py) in `bop_toolkit` accordingly. Update `BOP_RESULTS_FOLDER` in OSSID `config.py` to be the same as `results_path` in bop_toolkit `config.py`. 
+5. (For BOP Challenge evaluation) Setup the renderer needed for BOP evaluation as instructed [here](https://github.com/thodan/bop_toolkit). Update [config.py](https://github.com/r-pad/bop_toolkit/blob/master/bop_toolkit_lib/config.py) in `bop_toolkit` accordingly. Update `BOP_RESULTS_FOLDER` in OSSID `config.py` to be the same as `results_path` in bop_toolkit `config.py`. 
 
 ## Download data, checkpoints
 
