@@ -9,14 +9,20 @@ OSSID is a self-supervised pipeline for object instance detection by, and for, 6
 
 ## Setup
 
-1. We recommend building the environment and installing all required packages using Anaconda
+1. Clone this repo. Update the path to this repo as `OSSID_ROOT` in [config.py](https://github.com/r-pad/OSSID_code/blob/master/python/ossid/config.py). 
 ```
-conda env create -n ossid --file env.yml
-conda activate ossid
-pip install kornia
+git clone git@github.com:r-pad/OSSID_code.git
 ```
 
-2. Clone and pip install the following libraries. Update the path to [bop_toolkit](https://github.com/thodan/bop_toolkit) source code as `BOP_TOOLKIT_PATH` in `config.py`. 
+2. We recommend building the environment and installing all required packages using Anaconda. Also pip install this repo
+```
+cd OSSID_code
+conda env create -n ossid --file env.yml
+conda activate ossid
+pip install -e .
+```
+
+3. Clone and pip install the following libraries. Update the path to [bop_toolkit](https://github.com/thodan/bop_toolkit) source code as `BOP_TOOLKIT_PATH` in [config.py](https://github.com/r-pad/OSSID_code/blob/master/python/ossid/config.py). 
 ```
 git clone git@github.com:r-pad/quat_math.git
 cd quat_math; pip install .; cd ..
@@ -26,7 +32,7 @@ git clone git@github.com:thodan/bop_toolkit.git
 cd bop_toolkit; pip install -r requirements.txt -e .; cd ..
 ```
 
-3. Set up Zephyr by following the instructions [here](https://github.com/r-pad/zephyr). Note that we will use the same conda environment, so please skip the first step in "Set up environment" and follow the step 2, 3 and 4 in the conda environment `ossid`. 
+4. Set up Zephyr by following the instructions [here](https://github.com/r-pad/zephyr). Note that we will use the same conda environment, so please skip the first step in "Set up environment" and follow the step 2, 3 and 4 in the conda environment `ossid`. 
 Also note that [MVTec Halcon](https://www.mvtec.com/products/halcon/?pk_campaign=EN-Halcon&pk_medium=cpc&pk_kwd=) needs to be set up to run the entire pipeline. This repo is tested with [Halcon 21.05](https://www.mvtec.com/products/halcon/newest-features/halcon-21-05) student edition, while it should work with newer version. Remeber to update the python binding [mvtec-halcon](https://pypi.org/project/mvtec-halcon/) accordingly if you use a newer version (By default, `mvtec-halcon==21050.0.0` is installed). 
 ```
 sudo apt-get install build-essential cmake libopencv-dev python-numpy
@@ -41,12 +47,6 @@ make; make install
 
 cd .. # move to the root folder of zephyr 
 pip install -e .
-```
-
-4. Then clone and pip install this repo. Update the path `OSSID_ROOT` to be where this this repo is placed. 
-```
-git clone git@github.com:r-pad/ossid.git
-cd ossid; pip install -e .
 ```
 
 5. (For BOP Challenge evaluation) Setup the renderer needed for BOP evaluation as instructed [here](https://github.com/thodan/bop_toolkit). Update [config.py](https://github.com/thodan/bop_toolkit/blob/master/bop_toolkit_lib/config.py) in `bop_toolkit` accordingly. Update `BOP_RESULTS_FOLDER` in OSSID `config.py` to be the same as `results_path` in bop_toolkit `config.py`. 
