@@ -1,0 +1,18 @@
+# @package _group_
+name: "dtoid"
+dataset_root: "/home/qiaog/datasets/render/shapenetccbop"
+grid_root: "/home/qiaog/datasets/render/grid_processed"
+shorter_length: 480 # The length of the shorter edge after resizing
+heatmap_var: 1.5 # The variance of the GT Gaussian heatmap
+heatmap_shorter_length: 29 # the length of the shorter edge of the heatmap
+keep_aspect_ratio: False
+ttt_sampling: False
+homographic_warp: False # If True, the query data will be warped and provided
+homographic_down_factor: 8 # The downsampling ratio for warped feature map (8 for the default resnet and superpoint downsampling)
+homographic_random_kpt: True # If True, the keypoint for homography will be detected. Otherwise, it will be random. 
+homographic_warp_3d: True # If True, the warping will be done in 3D space
+augment_depth: True # If True, the depth map will be randomly corrupted
+img_h: 480
+img_w: 480
+heatmap_h: 29
+heatmap_w: 29

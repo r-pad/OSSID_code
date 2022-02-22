@@ -1,0 +1,16 @@
+# @package _group_
+name: "detect"
+bop_root: "/home/qiaog/datasets/bop/"
+# Arguments for BOPDataset
+test_dataset_name: "lmo"
+train_dataset_name: null # If null, the training dataset will be the same as the testing one
+n_classes: null
+# Arguments about using zephyr results
+load_zephyr_result: False
+zephyr_result_path: "/home/qiaog/datasets/bop/zephyr_results/test_lmo_boptest_zephyr_result.pkl"
+zephyr_filter_key: 'score'
+zephyr_filter_threshold: 20
+zephyr_results_percent: 1.0
+# The image and heatmap size
+img_h: 480
+img_w: 640

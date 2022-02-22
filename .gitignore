@@ -1,0 +1,12 @@
+notebook
+.ipynb_checkpoints
+outputs
+# lightning_logs/*
+tb_logs
+*/*.egg-info
+**/__pycache__
+notebooks
+python/ossid/slurm*.out
+.vscode
+lightning_logs
+*.zip

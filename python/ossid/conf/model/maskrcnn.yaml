@@ -1,0 +1,19 @@
+# @package _group_
+name: "maskrcnn"
+learning_rate: 1e-4
+weight_decay: 1e-5
+momentum: 0.9
+lr_epoch_decay: 40
+
+# configuration of Mask R-CNN
+backbone: 'resnet50-fpn'
+pretrained: True
+
+# About sizes in the network
+img_h: ${dataset.img_h}
+img_w: ${dataset.img_w}
+monitor: "val_seg_iou_50"
+monitor_mode: "max"
+checkpoint_name: "{epoch:03d}-{train_loss_epoch:.3f}-{val_seg_iou_50:.3f}"
+max_epochs: 100
+save_top_k: 5

@@ -1,0 +1,17 @@
+# @package _group_
+name: "ycbv_sift"
+valobj: 'even'
+skip: 50
+n_kpts: 1024
+n_kpts_model: null
+n_kpts_obs: null
+dist_thresh: 10
+scales: [11]
+dataset_root: '/datasets/ycb/YCB_Video_Dataset'
+grid_file: '/home/qiaog/pose-est/feature_based_pose/scripts/verts_grid_0.npy'
+oracle_model_feats: False
+oracle_model_view: False
+oracle_obs_kpts: False
+detect: False
+obs_kpt_dim: 2
+crop: False # If True, get featurization only at a small cropped region

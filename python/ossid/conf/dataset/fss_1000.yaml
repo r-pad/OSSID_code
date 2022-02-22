@@ -1,0 +1,5 @@
+# @package _group_
+name: 'fss1000'
+dataset_root: "/home/qiaog/datasets/fss/fewshot_data"
+test_split_file: "/home/qiaog/src/FSS-1000/fss_test_set.txt"
+k_support: 1

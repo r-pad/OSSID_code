@@ -1,0 +1,26 @@
+# @package _group_
+name: "fewshot_bop"
+bop_root: "/home/qiaog/datasets/bop/"
+# Arguments for BOPDataset
+dataset_name: "ycbv"
+model_type: null
+split_name: "train_real"
+split: "train"
+split_type: "real"
+skip: 20
+valobj: 'even' # Options for how to split the objects for YCB-V dataset
+# End of Arguments for BOPDataset
+keep_aspect_ratio: False
+k_support: 3 # k in k-shot
+visib_fract_th: 0.9
+render_support: False # If True, the object renders will be used as support images
+render_folder: "grid" # the name of the folder in dataset folder
+homographic_warp: False # If True, the query data will be warped and provided
+homographic_down_factor: 8 # The downsampling ratio for warped feature map (8 for the default resnet and superpoint downsampling)
+homographic_random_kpt: True # If True, the keypoint for homography will be detected. Otherwise, it will be random. 
+homographic_warp_3d: True # If True, the warping will be done in 3D space
+ttt_sampling: False 
+crop: False
+# parameters when crop=True
+zoom_factor: 2.0
+val_random_shift: False

@@ -1,0 +1,17 @@
+defaults:
+  - dataset: fewshot_bop
+  - model: superglue
+train:
+  batch_size: 4
+  num_workers: 8
+  val_shuffle: False # Whether to shuffle the valid and test dataloader
+  n_epochs: 100 # This is not being used
+  gpus: '0' # This should be a string
+resume_path: null
+resume_version: null
+resume_id: null
+weights_path: null
+debug: False
+project: "feature_graph"
+exp_suffix: "exp"
+exp_name: ???

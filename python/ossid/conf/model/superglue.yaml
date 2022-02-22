@@ -1,0 +1,20 @@
+# @package _group_
+name: "superglue"
+descriptor_dim: 128
+keypoint_encoder: [32, 64, 128]
+GNN_layers: ['self', 'cross', 'self', 'cross', 'self', 'cross', 'self', 'cross', 'self', 'cross', 'self', 'cross', 'self', 'cross', 'self', 'cross', 'self', 'cross']
+sinkhorn_iterations: 100
+match_threshold: 0.2
+model: 'half'
+kenc: 'add'
+learning_rate: 1e-4
+norm: 'layernorm'
+n_kpts: ${dataset.n_kpts}
+loss_scale: 10
+match_thresh: 0.1
+obs_kpt_dim: ${dataset.obs_kpt_dim}
+monitor: "valseen_seg_IoU"
+monitor_mode: "max"
+checkpoint_name: "{epoch:03d}-{train_seg_IoU:.3f}-{valseen_seg_IoU:.3f}-{valunseen_seg_IoU:.3f}"
+max_epochs: 100
+save_top_k: 10

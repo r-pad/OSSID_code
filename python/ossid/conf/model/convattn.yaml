@@ -1,0 +1,34 @@
+# @package _group_
+name: "convattn"
+learning_rate: 3e-5
+reweight_prob: 0
+xyz: True
+encoder: "superpoint" # ['resnet', "superpoint"]
+group_norm: 8 # the number of group in GroupNorm layer. If None or 0 (by default), BatchNorm will be used. 
+multi_scales: False # If True, the multi scales setting from DAN will be used. Otherwise it will be a simple encoder-decoder structure
+share_qsconv: True # If True, the qconv and kconv in GraphAttentionModule will share weights
+attnsplit: False # If True, the desc loss will be only on the key in the graph attention module. 
+normalize_key: False # If True, the key used in the graph attention net will be L2 normalized
+superpoint_rgb: True # If True, the superpoint input will be changed to RGB input instead of grayscale
+superpoint_with_xyz: True # effective only when encoder == "superpoint"
+superpoint_with_resnet: False # effective only when encoder == "superpoint"
+superpoint_freeze: False # If true, the superpoint on grayscale will be fixed during training
+superpoint_scratch: False # If true, the superpoint on grayscale will be trained from scratch
+superpoint_homography_loss: ${dataset.homographic_warp} # If true, the superpoint loss will be used together with the segmentation loss
+superpoint_homography_loss_only: False # If true, the gradient descent will be performed on the desc_loss only instead of the total loss
+superpoint_homography_mp: 1
+superpoint_homography_mn: 0.2
+superpoint_homography_lam_d: 250
+superpoint_homography_down_factor: ${dataset.homographic_down_factor} 
+superpoint_homography_lossweight: 0.1
+superpoint_homography_support: False # If True, the homographic consistency will also be performed on the support images
+graph_key_dim: null # the dimension of the key in the graph attention module. If None, it will be a half of input dim
+graph_val_dim: null # the dimension of the value in the graph attention module. If None, it will be a half of input dim. 
+mask_input: True # If True, the input support RGB and XYZ will be masked
+unmask_input_depth: False # If True, the input support xyz map will not be masked (when mask_input=True)
+k_support: ${dataset.k_support}
+monitor: "valunseen_seg_IoU"
+monitor_mode: "max"
+checkpoint_name: "{epoch:03d}-{train_seg_IoU:.3f}-{valseen_seg_IoU:.3f}-{valunseen_seg_IoU:.3f}"
+max_epochs: 100
+save_top_k: 5

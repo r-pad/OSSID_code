@@ -1,0 +1,29 @@
+# @package _group_
+name: "dtoid"
+lam_seg: 20
+lam_center: 20
+lam_cls: 1
+lam_reg: 1
+learning_rate: 1e-4
+weight_decay: 1e-6
+nms_iou_thresh: 0.5
+# About sizes in the network
+img_h: ${dataset.img_h}
+img_w: ${dataset.img_w}
+heatmap_h: ${dataset.heatmap_h}
+heatmap_w: ${dataset.heatmap_w}
+# About test time inference
+filter_z: False
+valid_all_templates: False # If true, during validation, all local templates will be forwarded as if tested
+# Load pretrained network
+use_pretrained_dtoid: False
+pretrained_dtoid_path: "/home/qiaog/src/feature_graph/python/feature_graph/lightning_logs/dtoid_pretrained.pth.tar"
+# Arguments about training
+# monitor: "valunseen_mAP"
+# monitor_mode: "max"
+# checkpoint_name: "{epoch:03d}-{train_mAP:.3f}-{valseen_mAP:.3f}-{valunseen_mAP:.3f}"
+monitor: "valunseen_seg_IoU"
+monitor_mode: "max"
+checkpoint_name: "{epoch:03d}-{train_seg_IoU:.3f}-{valseen_seg_IoU:.3f}-{valunseen_seg_IoU:.3f}"
+max_epochs: 100
+save_top_k: 5

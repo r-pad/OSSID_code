@@ -1,0 +1,27 @@
+# @package _group_
+name: "dtoid_bop"
+bop_root: "/home/qiaog/datasets/bop/"
+grid_root: "/home/qiaog/datasets/render/grid_processed"
+use_provided_template: False
+# Arguments for BOPDataset
+test_dataset_name: "lmo"
+train_dataset_name: null # If null, the training dataset will be the same as the testing one
+# Arguments about using zephyr results
+load_zephyr_result: False
+zephyr_result_path: "/home/qiaog/datasets/bop/zephyr_results/test_lmo_boptest_zephyr_result.pkl"
+zephyr_filter_key: 'score'
+zephyr_filter_threshold: 20
+zephyr_results_percent: 1.0
+# Arguments for data processing
+keep_aspect_ratio: True
+shorter_length: 480 # The length of the shorter edge after resizing
+heatmap_var: 1.5 # The variance of the GT Gaussian heatmap
+heatmap_shorter_length: 29 # the length of the shorter edge of the heatmap
+ttt_sampling: False 
+train_local_template_sample_from: 1 # the number of local templates closest to GT, from which the training one will be sampled
+n_local_test: 10 # The number of local templates to be used during test time
+# The image and heatmap size
+img_h: 480
+img_w: 640
+heatmap_h: 29
+heatmap_w: 39

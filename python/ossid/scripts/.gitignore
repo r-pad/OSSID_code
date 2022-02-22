@@ -1,0 +1,4 @@
+*.pkl
+lightning_logs
+finetune_results
+det_tmp
