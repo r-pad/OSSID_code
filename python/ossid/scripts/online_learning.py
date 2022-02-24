@@ -46,6 +46,10 @@ from bop_toolkit_lib.misc import ensure_dir, depth_im_to_dist_im_fast
 import faulthandler
 faulthandler.enable()
 
+def makeFolder(folder):
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+
 def getFeaturizedModels(dataset):
     from zephyr.full_pipeline.options import getOptions
     parser = getOptions()
@@ -81,6 +85,9 @@ def main(main_args):
     ZEPHYR_CONFIDENT_THRESHOLD = 20
     SAVE_ROOT = OSSID_RESULT_ROOT
     assert not (main_args.ignore_dtoid_mask and main_args.always_dtoid_mask)
+
+    makeFolder(SAVE_ROOT)
+    makeFolder(BOP_RESULTS_FOLDER)
 
     next_finetune_number = main_args.finetune_interval
 
@@ -522,14 +529,13 @@ def main(main_args):
 
                 print("Starting finetuning DTOID at iteration %d" % iteration)
                 t1 = time.time()
-                model, train_logs = finetuneDtoid(model, train_dtoid_bop_dataset, optimizer, epochs=main_args.finetune_epochs)
+                model, train_logs = finetuneDtoid(model, train_dtoid_bop_dataset, optimizer, epochs=main_args.finetune_epochs, batch_size=args.finetune_batch_size)
                 time_finetune = time.time() - t1
 
                 if main_args.save_each:
                     # save the model weights immediately after finetuning
                     model_save_folder = os.path.join(SAVE_ROOT, main_args.exp_name)
-                    if not os.path.exists(model_save_folder):
-                        os.makedirs(model_save_folder)
+                    makeFolder(model_save_folder)
 
                     model_save_path = os.path.join(model_save_folder, "epoch_%d.ckpt" % iteration)
                     print("Saving the current model at", model_save_path)
@@ -608,7 +614,7 @@ def main(main_args):
 
     '''Evaluate the results in terms of Detection mAP'''
     tmp_root = Path(OSSID_DET_ROOT)
-    saveLmoYcbvGT(tmp_root)
+    saveLmoYcbvGT(tmp_root, bop_root=BOP_DATASETS_ROOT)
     evalFinetuneResults(save_path, DATASET_NAME, tmp_root)
 
 def testDtoidModel(model, test_loader):
@@ -641,9 +647,7 @@ def testDtoidModel(model, test_loader):
 
     return test_results
 
-def finetuneDtoid(model, train_dataset, optimizer, epochs=1):
-    batch_size = 8
-
+def finetuneDtoid(model, train_dataset, optimizer, epochs=1, batch_size=8):
     train_loader = DataLoader(
         train_dataset, batch_size=batch_size, num_workers=8, collate_fn = collate_fn, 
         shuffle=True, pin_memory=True
@@ -701,6 +705,7 @@ if __name__ == "__main__":
     parser.add_argument("--finetune_warmup", type=int, default=0, help="Finetuning will happen only after this number of datapoints are added")
     parser.add_argument("--finetune_epochs", type=int, default=1, help="The epochs of training at each time DTOID is finetuned")
     parser.add_argument("--finetune_reset", action="store_true", help="If set, before each finetuning, the network will be reset to the initial weights")
+    parser.add_argument("--finetune_batch_size", type=int, default=8, help="The batch size for finetuning. ")
     parser.add_argument("--non_cum", action="store_true", help="If set, the finetuning example will be cleared after finetuning. ")
     parser.add_argument("--save_each", action="store_true", help="If set, the weights of the model will be saved after each finetuning function")
     

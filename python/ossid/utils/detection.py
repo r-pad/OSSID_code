@@ -58,11 +58,11 @@ def saveGTResults(bop_dataset, dataset_name, save_root=Path("./DetResults")):
         
     saveDetResults(results, save_root / ("gt-%s/" % dataset_name))
 
-def saveLmoYcbvGT(save_root=Path("./DetResults")):
+def saveLmoYcbvGT(save_root=Path("./DetResults"), bop_root="/home/qiaog/datasets/bop/"):
     if not os.path.exists(save_root / ("gt-%s/" % "lmo")):
         print("Saving lmo detetcion GT. This may take some time...")
         test_args = argparse.Namespace()
-        test_args.bop_root = "/home/qiaog/datasets/bop/"
+        test_args.bop_root = bop_root
         test_args.dataset_name = "lmo"
         test_args.split_name = "bop_test"
         test_args.split = "test"
@@ -79,7 +79,7 @@ def saveLmoYcbvGT(save_root=Path("./DetResults")):
     if not os.path.exists(save_root / ("gt-%s/" % "ycbv")):
         print("Saving ycbv detetcion GT. This may take some time...")
         test_args = argparse.Namespace()
-        test_args.bop_root = "/home/qiaog/datasets/bop/"
+        test_args.bop_root = bop_root
         test_args.dataset_name = "ycbv"
         test_args.split_name = "bop_test"
         test_args.split = "test"

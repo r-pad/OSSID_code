@@ -32,8 +32,8 @@ git clone git@github.com:r-pad/bop_toolkit.git   # We have only tested with our 
 cd bop_toolkit; pip install -e .; cd ..
 ```
 
-4. Set up Zephyr by following the instructions [here](https://github.com/r-pad/zephyr). Note that we will use the same conda environment, so please skip the first step in "Set up environment" and follow the step 2, 3 and 4 in the conda environment `ossid`. 
-Also note that [MVTec Halcon](https://www.mvtec.com/products/halcon/?pk_campaign=EN-Halcon&pk_medium=cpc&pk_kwd=) needs to be set up to run the entire pipeline. This repo is tested with [Halcon 21.05](https://www.mvtec.com/products/halcon/newest-features/halcon-21-05) student edition, while it should work with newer version. Remeber to update the python binding [mvtec-halcon](https://pypi.org/project/mvtec-halcon/) accordingly if you use a newer version (By default, `mvtec-halcon==21050.0.0` is installed). 
+4. Set up Zephyr from [this link](https://github.com/r-pad/zephyr). Note that we will use the same conda environment, so please follow instructions below (steps 2, 3, and 4 of the original [instructions](https://github.com/r-pad/zephyr#get-started)). 
+
 ```
 sudo apt-get install build-essential cmake libopencv-dev python-numpy
 
@@ -49,7 +49,15 @@ cd .. # move to the root folder of zephyr
 pip install -e .
 ```
 
-5. (For BOP Challenge evaluation) Setup the renderer needed for BOP evaluation as instructed [here](https://github.com/thodan/bop_toolkit). Update [config.py](https://github.com/r-pad/bop_toolkit/blob/master/bop_toolkit_lib/config.py) in `bop_toolkit` accordingly. Update `BOP_RESULTS_FOLDER` in OSSID `config.py` to be the same as `results_path` in bop_toolkit `config.py`. 
+5. [MVTec Halcon](https://www.mvtec.com/products/halcon/?pk_campaign=EN-Halcon&pk_medium=cpc&pk_kwd=) needs to be set up to run the entire pipeline. This repo is tested with [Halcon student edition](https://www.mvtec.com/company/mvtec-on-campus/licenses/student) (version=21.05), while it should work with newer version. Remeber to update the python binding [mvtec-halcon](https://pypi.org/project/mvtec-halcon/) accordingly if you use a newer version (By default, `mvtec-halcon==21050.0.0` is installed). After installatio of Halcon, you might need to run 
+
+```
+source /path/to/halcon/.profile_halcon
+```
+
+
+6. (For BOP Challenge evaluation) Setup the renderer needed for BOP evaluation as instructed [here](https://github.com/r-pad/bop_toolkit#c-renderer). This repo is tested with the C++ Renderer ([bop_renderer](https://github.com/thodan/bop_renderer)). Note that you may need to change the python version in [CMakeLists.txt](https://github.com/thodan/bop_renderer/blob/master/CMakeLists.txt) from 3.6 to 3.8. 
+Update [config.py](https://github.com/r-pad/bop_toolkit/blob/master/bop_toolkit_lib/config.py) in `bop_toolkit` accordingly. Update `BOP_RESULTS_FOLDER` in OSSID `config.py` to be the same as `results_path` in bop_toolkit `config.py`. 
 
 ## Download data, checkpoints
 
@@ -59,7 +67,11 @@ pip install -e .
 
 ## Experiments
 
-The following commands can be used to reproduce the results reported in our paper. First change the directory to `python/ossid/scripts/` and then run:
+The following commands can be used to reproduce the results reported in our paper. First change the directory to `python/ossid/scripts/` and then run the following commands. 
+
+In case of out of GPU memory error, please consider setting `--finetune_batch_size 4` or a smaller number. 
+
+If you are using student license, Halcon may not be able to run in multiple processes (`HALCON error #2348: Activation error`). Therefore please run the following commans sequentially. 
 
 * **OSSID(Ours)** on LM-O in Table 1. 
 ```
