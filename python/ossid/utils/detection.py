@@ -1,4 +1,4 @@
-import os, argparse
+import os, argparse, shutil
 import subprocess
 import numpy as np
 import pandas as pd
@@ -8,6 +8,7 @@ from tqdm import trange
 from zephyr.utils.bop_dataset import BopDataset
 
 from ossid.utils.results import loadResult
+from ossid.config import MAP_CODE_ROOT
 
 from pathlib import Path
 
@@ -94,15 +95,21 @@ def saveLmoYcbvGT(save_root=Path("./DetResults"), bop_root="/home/qiaog/datasets
         print("GT Det for ycbv already exists")
 
 def runMapEval(gt_folder, det_folder):
-    map_script_root = Path("/home/qiaog/src/mAP/")
+    map_script_root = Path(MAP_CODE_ROOT)
     
     gt_dst = map_script_root / 'input' / "ground-truth"
     det_dst = map_script_root / 'input' / "detection-results"
 
-    if os.path.islink(gt_dst):
-        os.remove(gt_dst)
-    if os.path.islink(det_dst):
-        os.remove(det_dst)
+    if os.path.exists(gt_dst):
+        try:
+            os.remove(gt_dst)
+        except:
+            shutil.rmtree(gt_dst)
+    if os.path.exists(det_dst):
+        try:
+            os.remove(det_dst)
+        except:
+            shutil.rmtree(det_dst)
 
     os.symlink(os.path.abspath(gt_folder), gt_dst)
     os.symlink(os.path.abspath(det_folder), det_dst)

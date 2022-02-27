@@ -55,9 +55,10 @@ pip install -e .
 source /path/to/halcon/.profile_halcon
 ```
 
-
 6. (For BOP Challenge evaluation) Setup the renderer needed for BOP evaluation as instructed [here](https://github.com/r-pad/bop_toolkit#c-renderer). This repo is tested with the C++ Renderer ([bop_renderer](https://github.com/thodan/bop_renderer)). Note that you may need to change the python version in [CMakeLists.txt](https://github.com/thodan/bop_renderer/blob/master/CMakeLists.txt) from 3.6 to 3.8. 
 Update [config.py](https://github.com/r-pad/bop_toolkit/blob/master/bop_toolkit_lib/config.py) in `bop_toolkit` accordingly. Update `BOP_RESULTS_FOLDER` in OSSID `config.py` to be the same as `results_path` in bop_toolkit `config.py`. 
+
+7. (For detection mAP evaluation) Clone this [Github repo](https://github.com/Cartucho/mAP). Update its path as `MAP_CODE_ROOT` in `config.py`. 
 
 ## Download data, checkpoints
 
