@@ -11,6 +11,9 @@ authors:
   given-names: "David"
   orcid: "https://orcid.org/0000-0003-0537-1508"
 title: "OSSID: Online Self-Supervised Instance Detection by (And For) Pose Estimation"
+version: 1.0.0
+date-released: 2022.02.27
+url: "https://github.com/r-pad/OSSID_code"
 doi: 10.1109/LRA.2022.3145488
 preferred-citation:
   type: article

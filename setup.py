@@ -4,7 +4,7 @@ from setuptools import find_packages
 
 setup(
     name='ossid',
-    version='1.0',
+    version='1.0.0',
     author='Qiao Gu',
     packages=find_packages('python'),
     package_dir={'': 'python'},
