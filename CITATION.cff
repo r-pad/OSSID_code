@@ -17,6 +17,7 @@ url: "https://github.com/r-pad/OSSID_code"
 doi: 10.1109/LRA.2022.3145488
 preferred-citation:
   type: article
+  authors:
   - family-names: "Gu"
     given-names: "Qiao"
     orcid: "https://orcid.org/0000-0002-1342-3307"
