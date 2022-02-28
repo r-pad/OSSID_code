@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Gu"
+  given-names: "Qiao"
+  orcid: "https://orcid.org/0000-0002-1342-3307"
+- family-names: "Okorn"
+  given-names: "Brian"
+  orcid: "https://orcid.org/0000-0001-8092-1288"
+- family-names: "Held"
+  given-names: "David"
+  orcid: "https://orcid.org/0000-0003-0537-1508"
+title: "OSSID: Online Self-Supervised Instance Detection by (And For) Pose Estimation"
+doi: 10.1109/LRA.2022.3145488
+preferred-citation:
+  type: article
+  - family-names: "Gu"
+    given-names: "Qiao"
+    orcid: "https://orcid.org/0000-0002-1342-3307"
+  - family-names: "Okorn"
+    given-names: "Brian"
+    orcid: "https://orcid.org/0000-0001-8092-1288"
+  - family-names: "Held"
+    given-names: "David"
+    orcid: "https://orcid.org/0000-0003-0537-1508"
+  doi: "10.1109/LRA.2022.3145488"
+  journal: "IEEE Robotics and Automation Letters"
+  start: 3022 # First page number
+  end: 3029 # Last page number
+  title: "OSSID: Online Self-Supervised Instance Detection by (And For) Pose Estimation"
+  issue: 2
+  volume: 7
+  year: 2022
