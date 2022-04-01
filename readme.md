@@ -192,7 +192,7 @@ If you find this codebase useful in your research, please consider citing:
 
 @inproceedings{icra2022ossid,
   title={OSSID: Online Self-Supervised Instance Detection by (and for) Pose Estimation},
-  author={Qiao Gu, Brian Okorn, David Held},
+  author={Gu, Qiao and Okorn, Brian and Held, David},
   booktitle={2022 International Conference on Robotics and Automation (ICRA)},
   year={2022}}
 ```
