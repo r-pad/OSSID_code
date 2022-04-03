@@ -4,6 +4,7 @@ OSSID is a self-supervised pipeline for object instance detection by, and for, 6
 
 [[Arxiv]](https://arxiv.org/abs/2201.07309)
 [[Project Page]](https://georgegu1997.github.io/OSSID/)
+[[Video]](https://www.youtube.com/watch?v=S_pU2FbMN8k)
 
 ![teaser image](images/ossid.jpg)
 
